@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:drools-spring="http://drools.org/schema/drools-spring"
+	xsi:schemaLocation="http://drools.org/schema/drools-spring http://drools.org/schema/drools-spring.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<drools-spring:kbase id="kbase">
+		<drools-spring:resources>
+			<drools-spring:resource type="DRL" source="classpath:rules/org/drools/tutorials/banking/Example5.drl" />
+		</drools-spring:resources>
+	</drools-spring:kbase>
+
+	<drools-spring:ksession id="ksession" type="stateful" kbase="kbase" />
+
+	<bean id="ruleRunner" class="org.drools.tutorials.banking.RuleRunner">
+		<property name="ksession" ref="ksession" />
+		<property name="kbase" ref="kbase" />
+	</bean>
+
+</beans>
